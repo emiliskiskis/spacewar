@@ -1,6 +1,6 @@
 
-public class Spaceship extends MassObject implements Main.SpaceshipInterface {
+public class Spaceship extends MassObject {
     Spaceship(int mass){
-        super(mass);
+        super(mass, 0, 0);
     }
 }

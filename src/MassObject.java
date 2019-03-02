@@ -4,7 +4,7 @@ import java.lang.Math;
 public class MassObject implements Main.MassObjectInterface {
     private double mass;
     double speed_x, speed_y, acc_x, acc_y, coord_x, coord_y;
-    private static final double NEWTON_G = Math.pow(6.674, -11);
+    private static final double NEWTON_G = 6.674e-11;
     private static ArrayList<MassObject> MassObjectList = new ArrayList<>();
 
     MassObject(){
@@ -12,9 +12,11 @@ public class MassObject implements Main.MassObjectInterface {
         speed_x = speed_y = acc_x = acc_y = 0;
     }
 
-    MassObject(double mass) {
+    MassObject(double mass, double coord_x, double coord_y) {
         this();
         this.mass = mass;
+        this.coord_x = coord_x;
+        this.coord_y = coord_y;
     }
 
     public double getMass(){
@@ -46,7 +48,7 @@ public class MassObject implements Main.MassObjectInterface {
     }
 
     private double getAcceleration(MassObject a){
-        return NEWTON_G * a.mass * Math.pow(getDistance(a), 2);
+        return NEWTON_G * a.mass / Math.pow(getDistance(a), 2);
     }
 
     private void setAcceleration(MassObject a){
@@ -55,7 +57,12 @@ public class MassObject implements Main.MassObjectInterface {
     }
 
     public void calculateGravity () {
-        for (MassObject i : MassObjectList)
-            if(this != i) setAcceleration(i);
+        System.out.println("Calculating gravity of planet " + MassObjectList.indexOf(this));
+        for (int i = 0; i < MassObjectList.size(); i++)
+            if(this != MassObjectList.get(i)){
+                System.out.println("Distance to planet " + i + " is " + getDistance(MassObjectList.get(i)) + ", acceleration to it is " + getAcceleration(MassObjectList.get(i)));
+                setAcceleration(MassObjectList.get(i));
+            }
+        System.out.println("Final acceleration is " + getAcc());
     }
 }
