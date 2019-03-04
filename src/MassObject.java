@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.lang.Math;
+import java.awt.*;
 
 public class MassObject implements Main.MassObjectInterface {
     private double mass;
@@ -17,6 +18,10 @@ public class MassObject implements Main.MassObjectInterface {
         this.mass = mass;
         this.coord_x = coord_x;
         this.coord_y = coord_y;
+    }
+
+    static void draw(Graphics g){
+
     }
 
     public double getMass(){
@@ -57,12 +62,12 @@ public class MassObject implements Main.MassObjectInterface {
     }
 
     public void calculateGravity () {
-        System.out.println("Calculating gravity of planet " + MassObjectList.indexOf(this));
+        //System.out.println("Calculating gravity of planet " + MassObjectList.indexOf(this));
         for (int i = 0; i < MassObjectList.size(); i++)
             if(this != MassObjectList.get(i)){
-                System.out.println("Distance to planet " + i + " is " + getDistance(MassObjectList.get(i)) + ", acceleration to it is " + getAcceleration(MassObjectList.get(i)));
+                //System.out.println("Distance to planet " + i + " is " + getDistance(MassObjectList.get(i)) + ", acceleration to it is " + getAcceleration(MassObjectList.get(i)));
                 setAcceleration(MassObjectList.get(i));
             }
-        System.out.println("Final acceleration is " + getAcc());
+        //System.out.println("Final acceleration is " + getAcc());
     }
 }

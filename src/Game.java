@@ -1,18 +1,21 @@
+import javax.swing.*;
 import java.awt.*;
 
-public class Game extends Canvas {
-    //FIELDS
-    final int WIDTH = 640, HEIGHT = 480;
+public class Game extends JPanel {
 
-    //METHODS
-    public void start(){
-        Dimension size = new Dimension (WIDTH, HEIGHT);
-        setPreferredSize(size);
-        paint(null);
+    enum Status {MAIN_MENU, SELECTION, PLAYING, PAUSED};
+    Status gameStatus;
+
+    public Game(){
+        gameStatus = Status.MAIN_MENU;
     }
 
-    public void paint(Graphics g){
-        g.setColor(Color.BLACK);
-        g.fillRect(0, 0, WIDTH, HEIGHT);
+    @Override
+    public void paintComponent(Graphics g){
+        super.paintComponent(g);
+
+        if(gameStatus == Status.MAIN_MENU){
+
+        }
     }
 }
